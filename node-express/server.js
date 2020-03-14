@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const campsiteRouter = require('./routes/campsiteRouter');
+const promotionRouter = require('./routes/promotionRouter');
+const partnerRouter = require('./routes/partnerRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -12,8 +14,11 @@ app.use(bodyParser.json());
 
 app.use('/campsites', campsiteRouter);
 
+app.use('/promotions', promotionRouter);
 
-//end
+app.use('/partners', partnerRouter);
+
+
 app.use(express.static(__dirname + '/public'));
 
 app.use((req, res) => {
