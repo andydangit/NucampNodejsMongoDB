@@ -1,51 +1,51 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const promotionsRouter = express.Router();
+const promotionRouter = express.Router();
 
-promotionsRouter.use(bodyParser.json());
+promotionRouter.use(bodyParser.json());
 
-// task 2
-
-promotionsRouter.route('./promotionsRouter')
+promotionRouter.route('/')
 .all((req, res, next) => {
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader = ('Content-Type', 'text/plain');
     next();
 })
 .get((req, res) => {
-    res.end('Will send all the campsites to you');
+    res.end('Will send all promotions to you.');
 })
 .post((req, res) => {
-    res.end(`Will add the campsite: ${req.body.name} with description: ${req.body.description}`);
+    res.end(`Will add the promotion: ${req.body.name} with description: ${req.body.description}`);
 })
 .put((req, res) => {
     res.statusCode = 403;
-    res.end('PUT operation not supported on /campsites');
+    res.end(`PUT operation not supported on /promotions`);
 })
 .delete((req, res) => {
-    res.end('Deleting all campsites');
+    res.end('Deleting all promotions');
 });
 
-promotionsRouter.route('/promotions/:promotionId')
+//promotionId
+promotionRouter.route('/:promotionId')
 .all((req, res, next) => {
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader = ('Content-Type', 'text/plain');
     next();
 })
 .get((req, res) => {
-    res.end('Will send all the campsites to you');
+    res.end(`Will send details of promotion ${req.params.promotionId} to you`);
 })
 .post((req, res) => {
-    res.end(`Will add the campsite: ${req.body.name} with description: ${req.body.description}`);
+    res.statusCode = 403;
+    res.end(`POST operation not supported on /promotions${req.params.promotionId}`);
 })
 .put((req, res) => {
-    res.statusCode = 403;
-    res.end('PUT operation not supported on /campsites');
+    res.write(`Updating the promotion: ${req.params.promotionId}\n`);
+    res.end(`Will update the promotion: ${req.body.name} with 
+        description: ${req.body.description}`);
 })
 .delete((req, res) => {
-    res.end('Deleting all campsites');
+    res.end(`Deleting the promotion: ${req.params.promotionId}`)
 });
 
-//End 
-module.exports = promotionsRouter; 
+module.exports = promotionRouter; 
