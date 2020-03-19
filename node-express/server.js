@@ -5,10 +5,10 @@ const campsiteRouter = require('./routes/campsiteRouter');
 const promotionRouter = require('./routes/promotionRouter');
 const partnerRouter = require('./routes/partnerRouter');
 
-const hostname = 'localhost';
+const hostname = 'localhost'; // create a server 
 const port = 3000;
 
-const app = express();
+const app = express(); // calling expresss function and using middleware
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
@@ -19,7 +19,7 @@ app.use('/promotions', promotionRouter);
 app.use('/partners', partnerRouter);
 
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public')); // grab static files from public dir. 
 
 app.use((req, res) => {
     res.statusCode = 200;
